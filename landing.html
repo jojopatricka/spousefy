@@ -1,5 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan</title>
+    <style>
+        /* Gaya dari Landing Page SPOUSEFY */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #121212;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            max-width: 90%;
+        }
+        h1 {
+            color: #1DB954; /* Hijau Spotify */
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 2.5em;
+            margin: 0 0 20px 0;
+            line-height: 1.1;
+        }
+        p {
+            color: #b3b3b3;
+            margin-bottom: 30px;
+        }
+        .play-button {
+            background-color: #1DB954;
+            color: black;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 500px;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            transition: background-color 0.3s;
+        }
+        .play-button:hover {
+            background-color: #1ED760;
+        }
+        .footer-text {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.7em;
+            color: #535353;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="greeting">HALO</h1>
+        <h2 id="guestNameDisplay">Nama Tidak Diketahui</h2>
+        <p>Anda diundang untuk mendengarkan lagu hidup kami.</p>
+        
+        <a id="startButton" href="#" class="play-button">
+            ▶️ PLAY OUR STORY
+        </a>
+    </div>
+    <p class="footer-text">SPOUSEFY Wedding Edition - Made with Love</p>
+
     <script>
-        // --- FUNGSI NAMA TAMU & AUTOPLAY MUSIK ---
         document.addEventListener('DOMContentLoaded', function() {
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -7,51 +79,24 @@
             }
 
             const guestName = getQueryParam('to');
-            const musicCommand = getQueryParam('play_music'); // Cek perintah dari Landing Page
             const displayElement = document.getElementById('guestNameDisplay');
-            const music = document.getElementById('background-music');
+            const startButton = document.getElementById('startButton');
             
-            const defaultGreeting = 'WELCOME, KESAYANGAN';
-            
-            // 1. Memproses Nama Tamu
-            if (guestName && displayElement) {
-                const cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
-                displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
-            } else if (displayElement) {
-                displayElement.textContent = defaultGreeting;
-            }
+            const defaultName = 'Nama Tidak Diketahui';
+            let finalName = defaultName;
 
-            // 2. Memproses Autoplay Musik JIKA ADA PERINTAH DARI LANDING PAGE
-            if (musicCommand === 'true') {
-                music.volume = 0.5;
-                music.play().catch(error => {
-                    console.error("Autoplay diblokir:", error);
-                });
+            if (guestName) {
+                // Decode nama tamu (misal: 'Nama%20Tamu' menjadi 'Nama Tamu')
+                finalName = decodeURIComponent(guestName.replace(/\+/g, ' '));
+                displayElement.textContent = finalName;
             } else {
-                // Jika tidak ada perintah, tetap berikan kesempatan memutar musik saat klik pertama di halaman ini
-                let hasPlayed = false;
-                document.addEventListener('click', function() {
-                    if (!hasPlayed) {
-                        music.volume = 0.5;
-                        music.play().catch(error => {});
-                        hasPlayed = true;
-                    }
-                }, { once: true });
+                displayElement.textContent = defaultName;
             }
+
+            // LINK FINAL: Mengarahkan ke index.html, mengirim parameter nama tamu, DAN perintah play_music=true
+            const targetUrl = `index.html?to=${encodeURIComponent(finalName)}&play_music=true`;
+            startButton.href = targetUrl;
         });
-
-        // --- WIDGET DISQUS (GUESTBOOK LIVE) ---
-        var disqus_config = function () {
-            this.page.identifier = 'JojoGabyWedding'; 
-            this.page.url = 'https://precious-peony-8c43cb.netlify.app/'; 
-            this.page.title = 'Wishes for Jojo & Gaby';
-        };
-
-        (function() { 
-            var d = document, s = d.createElement('script');
-            // SHORTNAME DISQUS ANDA SUDAH DIPASANG DI SINI
-            s.src = 'https://jongski.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
     </script>
+</body>
+</html>
