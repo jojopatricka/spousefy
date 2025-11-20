@@ -452,7 +452,7 @@
 <body>
     
     <audio id="background-music" loop>
-        <source src="https://cdntr4.onlinedown.us/230128/Boyz_II_Men_On_Bended_Knee_CeeNaija.Com_.mp3" type="audio/mp3">
+        <source src="https://wedding-template-public-assets.s3.ap-southeast-1.amazonaws.com/on-bended-knee.mp3" type="audio/mp3">
         Browser Anda tidak mendukung elemen audio.
     </audio>
 
@@ -613,7 +613,7 @@
     </div>
 
     <script>
-        // --- 3A. FUNGSI NAMA TAMU & AUTOPLAY MUSIK ---
+        // --- FUNGSI NAMA TAMU & AUTOPLAY MUSIK ---
         document.addEventListener('DOMContentLoaded', function() {
             function getQueryParam(param) {
                 const urlParams = new URLSearchParams(window.location.search);
@@ -621,46 +621,50 @@
             }
 
             const guestName = getQueryParam('to');
+            const musicCommand = getQueryParam('play_music'); // CEK PERINTAH INI
             const displayElement = document.getElementById('guestNameDisplay');
             const music = document.getElementById('background-music');
             
             const defaultGreeting = 'WELCOME, KESAYANGAN';
-            let finalGuestName = 'KESAYANGAN'; 
-            let hasPlayed = false;
-
-            // Memproses Nama Tamu
+            
+            // 1. Memproses Nama Tamu
             if (guestName && displayElement) {
                 const cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
-                finalGuestName = cleanName;
                 displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
             } else if (displayElement) {
                 displayElement.textContent = defaultGreeting;
             }
 
-            // Memproses Autoplay Musik (hanya setelah interaksi user)
-            document.addEventListener('click', function() {
-                if (!hasPlayed) {
-                    music.volume = 0.5;
-                    music.play().catch(error => {
-                        console.log("Autoplay diblokir.");
-                    });
-                    hasPlayed = true;
-                }
-            }, { once: true });
+            // 2. Memproses Autoplay Musik JIKA ADA PERINTAH DARI LANDING PAGE
+            if (musicCommand === 'true') {
+                music.volume = 0.5;
+                // INI PERINTAH UNTUK MEMUTAR MUSIK
+                music.play().catch(error => {
+                    console.error("Autoplay diblokir:", error);
+                });
+            } else {
+                // FALLBACK: Jika tidak ada perintah, tetap berikan kesempatan memutar musik saat klik pertama di halaman ini
+                let hasPlayed = false;
+                document.addEventListener('click', function() {
+                    if (!hasPlayed) {
+                        music.volume = 0.5;
+                        music.play().catch(error => {});
+                        hasPlayed = true;
+                    }
+                }, { once: true });
+            }
         });
 
-        // --- 3B. WIDGET DISQUS (GUESTBOOK LIVE) ---
+        // --- WIDGET DISQUS (GUESTBOOK LIVE) ---
         var disqus_config = function () {
-            // Identifier HARUS unik untuk setiap halaman
             this.page.identifier = 'JojoGabyWedding'; 
-            // URL (Opsional, tapi direkomendasikan)
             this.page.url = 'https://precious-peony-8c43cb.netlify.app/'; 
             this.page.title = 'Wishes for Jojo & Gaby';
         };
 
-        (function() { // DON'T EDIT BELOW THIS LINE
+        (function() { 
             var d = document, s = d.createElement('script');
-            // SHORTNAME DISQUS ANDA SUDAH DIPASANG DI SINI
+            // SHORTNAME DISQUS ANDA SUDAH BENAR
             s.src = 'https://jongski.disqus.com/embed.js'; 
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
