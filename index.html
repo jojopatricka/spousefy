@@ -3,25 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPOUSETIFY | JoJo & Gaby</title> 
+    <title>SPOUSETIFY | JoJo & Gaby</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- KODE CSS LENGKAP SPUSETIFY V3 (Desain Cantik) --- */
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            /* Font diubah ke Poppins sebagai pengganti Circular Std yang berbayar, ini sangat mendekati. */
+            font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
             background-color: #121212; 
             color: #fff; 
             margin: 0;
             padding: 0;
         }
+        
+        /* Penyesuaian Global */
+        .green-neon { color: #1DB954 !important; }
+        .spotify-background { background-color: #1DB954; color: #000; }
+        .section { padding: 20px; }
+        .section-title { font-size: 1.5em; margin-bottom: 20px; font-weight: 800; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto; }
 
-        .green-neon {
-            color: #1DB954 !important; 
-        }
-        .spotify-background {
-            background-color: #1DB954;
-            color: #000;
-        }
-
+        /* HEADER & NAVIGASI */
         .spotify-header {
             background-color: #000;
             padding: 20px 20px 0 20px; 
@@ -30,431 +32,96 @@
             z-index: 1000; 
             border-bottom: 1px solid #282828;
         }
-        
         .header-top-row {
-            display: flex;
-            justify-content: space-between; 
-            align-items: center;
-            margin-bottom: 15px; 
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; 
         }
+        .brand-logo { display: flex; align-items: center; font-weight: 800; }
+        .logo-icon { font-size: 1.5em; margin-right: 5px; }
+        .logo-text { font-size: 1.1em; color: #fff; }
+        .welcome-guest { font-size: 1em; font-weight: 700; margin: 0; }
+        .spotify-nav-tabs { display: flex; overflow-x: auto; padding-bottom: 10px; -webkit-overflow-scrolling: touch; }
+        .nav-tab { color: #a7a7a7; text-decoration: none; padding: 8px 15px; margin-right: 8px; border-radius: 50px; font-size: 0.9em; font-weight: 600; flex-shrink: 0; }
+        .nav-tab.active, .nav-tab:hover { background-color: #282828; color: #fff; }
 
-        .brand-logo {
-            display: flex;
-            align-items: center;
-            font-weight: 800;
-        }
+        /* VIDEO SECTION */
+        .trailer-section { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero-image { width: 250px; height: 250px; overflow: hidden; border-radius: 5px; box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5); }
+        .trailer-image { width: 100%; height: 100%; object-fit: cover; }
+        .docu-tag { color: #000; font-size: 0.8em; font-weight: 600; background-color: #1DB954; padding: 3px 6px; border-radius: 3px; margin-top: 20px; margin-bottom: 5px; display: inline-block; }
+        .trailer-title { font-size: 2.2em; margin: 5px 0 10px 0; font-weight: 800; color: #fff; }
+        .metadata { font-size: 0.9em; color: #b3b3b3; margin-bottom: 20px; }
+        .metadata span { border: none; padding: 0; margin-right: 15px; }
+        .coming-soon { color: #000; font-size: 1em; margin: 15px 0; padding: 8px 15px; border-radius: 50px; background-color: #1DB954; font-weight: 700; cursor: pointer; }
+        .deskripsi { font-size: 1em; line-height: 1.5; color: #a7a7a7; text-align: left; max-width: 500px; margin: 20px auto 0 auto; }
 
-        .logo-icon {
-            font-size: 1.5em; 
-            margin-right: 5px;
-        }
-
-        .logo-text {
-            font-size: 1.1em;
-            color: #fff;
-        }
-
-        .welcome-guest {
-            font-size: 1em;
-            font-weight: 700;
-            margin: 0;
-        }
-
-        .spotify-nav-tabs {
-            display: flex;
-            overflow-x: auto; 
-            padding-bottom: 10px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .nav-tab {
-            color: #a7a7a7;
-            text-decoration: none;
-            padding: 8px 15px;
-            margin-right: 8px;
-            border-radius: 50px;
-            font-size: 0.9em;
-            font-weight: 600;
-            flex-shrink: 0; 
-        }
-
-        .nav-tab.active, .nav-tab:hover {
-            background-color: #282828;
-            color: #fff;
-        }
-
-        .section {
-            padding: 20px;
-        }
-
-        .section-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            font-weight: 700;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .trailer-section { 
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .hero-image {
-            width: 250px; 
-            height: 250px;
-            overflow: hidden;
-            border-radius: 5px;
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5); 
-        }
-
-        .trailer-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .docu-tag { 
-            color: #000;
-            font-size: 0.8em;
-            font-weight: 600;
-            background-color: #1DB954; 
-            padding: 3px 6px;
-            border-radius: 3px;
-            margin-top: 20px;
-            margin-bottom: 5px;
-            display: inline-block;
-        }
-
-        .trailer-title {
-            font-size: 2.2em;
-            margin: 5px 0 10px 0;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .metadata {
-            font-size: 0.9em;
-            color: #b3b3b3; 
-            margin-bottom: 20px;
-        }
-
-        .metadata span {
-            border: none;
-            padding: 0;
-            margin-right: 15px;
-        }
-
-        .coming-soon {
-            color: #000;
-            font-size: 1em;
-            margin: 15px 0;
-            padding: 8px 15px;
-            border-radius: 50px;
-            background-color: #1DB954; 
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .deskripsi {
-            font-size: 1em;
-            line-height: 1.5;
-            color: #a7a7a7; 
-            text-align: left;
-            max-width: 500px;
-            margin: 20px auto 0 auto;
-        }
-
-        .gallery-section {
-            padding-top: 50px;
-        }
-
+        /* PHOTO GALLERY SECTION */
+        .gallery-section { padding-top: 50px; }
         .poster-grid { 
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, 1fr); /* 3 kolom */
             gap: 15px;
             max-width: 600px;
             margin: 0 auto;
         }
-
-        .poster-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border-radius: 4px; 
+        @media (max-width: 600px) {
+            .poster-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+            }
         }
-
+        .poster-item { position: relative; overflow: hidden; cursor: pointer; border-radius: 4px; }
         .image-placeholder {
             width: 100%;
             padding-bottom: 100%; 
             background-color: #000; 
             border-radius: 4px;
-            overflow: hidden; /* Tambahkan ini agar gambar di dalamnya terpotong rapi */
+            overflow: hidden;
+            position: relative;
         }
-        
-        /* Tambahan CSS untuk gambar di dalam placeholder */
         .image-placeholder img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
-
-        .poster-info { 
-            position: static;
-            padding: 8px 0;
-            background: none;
-            color: white;
-        }
-
-        .tag-label {
-            font-size: 0.7em;
-            padding: 2px 4px;
-            border-radius: 3px;
-            margin-bottom: 2px;
-            display: block;
-            width: fit-content;
-            background-color: #282828; 
-            color: #fff;
-        }
-
-        .favorite {
-            background-color: #1DB954; 
-            color: #000;
-        }
-
-        .poster-title {
-            font-size: 0.9em;
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .tracklist-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 50px;
-        }
-
-        .location-container {
-            display: flex;
-            flex-direction: column; 
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .map-placeholder {
-            height: 180px;
-            background-color: #282828; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            border-radius: 4px;
-        }
-
-        .location-details h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.5em;
-        }
-
-        .address {
-            color: #a7a7a7;
-            margin: 0 0 15px 0;
-        }
-
-        .map-button {
-            display: inline-block;
-            background-color: #1DB954; 
-            color: #000;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: background-color 0.3s;
-        }
-
-        .timeline-subtitle {
-            font-size: 1.2em;
-            font-weight: 700;
-            color: #a7a7a7;
-            border-bottom: 1px solid #282828;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-
-        .track-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #282828;
-        }
-
-        .track-number {
-            font-size: 2em;
-            font-weight: 800;
-            margin-right: 20px;
-            flex-shrink: 0; 
-        }
-
-        .track-info {
-            flex-grow: 1;
-        }
-
-        .track-name {
-            margin: 0;
-            font-weight: 600;
-            font-size: 1.1em;
-        }
-
-        .track-date, .track-time {
-            display: block;
-            font-size: 0.9em;
-            color: #a7a7a7;
-        }
-
-        .track-status {
-            font-size: 0.7em;
-            font-weight: 700;
-            padding: 3px 6px;
-            border-radius: 3px;
-            flex-shrink: 0; 
-        }
-
-        .live {
-            background-color: #1DB954; 
-            color: #000;
-        }
-
-        .rem {
-            background-color: #535353; 
-            color: #fff;
-        }
         
-        .artists-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 50px;
-            text-align: center;
-        }
-
-        .artist-duo-grid {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .artist-card {
-            flex: 1;
-            text-align: center;
-        }
-
-        .artist-photo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%; 
-            margin: 0 auto 10px auto;
-            background-color: #282828; 
-            border: 3px solid #1DB954; 
-            overflow: hidden;
-        }
-
-        .artist-name {
-            margin: 5px 0 0 0;
-            font-size: 1.2em;
-            font-weight: 700;
-        }
-
-        .artist-role {
-            margin: 0;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        .artist-producer {
-            margin: 5px 0 0 0;
-            font-size: 0.8em;
-            color: #a7a7a7;
-        }
+        /* TRACKLIST & LOCATION */
+        .tracklist-section { max-width: 600px; margin: 0 auto; padding-top: 50px; }
+        .location-container { display: flex; flex-direction: column; gap: 20px; margin-bottom: 40px; }
+        .map-placeholder { height: 180px; background-color: #282828; display: flex; align-items: center; justify-content: center; font-weight: 700; border-radius: 4px; }
+        .location-details h3 { margin: 0 0 5px 0; font-size: 1.5em; }
+        .address { color: #a7a7a7; margin: 0 0 15px 0; }
+        .map-button { display: inline-block; background-color: #1DB954; color: #000; text-decoration: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; transition: background-color 0.3s; }
+        .timeline-subtitle { font-size: 1.2em; font-weight: 700; color: #a7a7a7; border-bottom: 1px solid #282828; padding-bottom: 10px; margin-bottom: 20px; }
+        .track-item { display: flex; align-items: center; padding: 10px 0; border-bottom: 1px solid #282828; }
+        .track-number { font-size: 2em; font-weight: 800; margin-right: 20px; flex-shrink: 0; }
+        .track-info { flex-grow: 1; }
+        .track-name { margin: 0; font-weight: 600; font-size: 1.1em; }
+        .track-date, .track-time { display: block; font-size: 0.9em; color: #a7a7a7; }
+        .track-status { font-size: 0.7em; font-weight: 700; padding: 3px 6px; border-radius: 3px; flex-shrink: 0; }
+        .live { background-color: #1DB954; color: #000; }
+        .rem { background-color: #535353; color: #fff; }
         
-        .wishes-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 50px;
-            padding-bottom: 50px; 
-        }
-        
-        /* Style untuk Disqus (agar background gelap) */
-        #disqus_thread {
-            background-color: #181818;
-            padding: 15px;
-            border-radius: 8px;
-        }
+        /* ARTISTS SECTION */
+        .artists-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
+        .artist-duo-grid { display: flex; justify-content: space-around; gap: 20px; margin-top: 20px; }
+        .artist-card { flex: 1; text-align: center; }
+        .artist-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 10px auto; background-color: #282828; border: 3px solid #1DB954; overflow: hidden; }
+        .artist-name { margin: 5px 0 0 0; font-size: 1.2em; font-weight: 700; }
+        .artist-producer { margin: 0; font-size: 0.8em; color: #a7a7a7; }
 
-        .rsvp-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding-top: 50px;
-            text-align: center;
-        }
-
-        .rsvp-note {
-            color: #a7a7a7;
-            margin-bottom: 25px;
-        }
-
-        .rsvp-button {
-            display: block;
-            text-decoration: none;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .share-button {
-            display: block;
-            text-decoration: none;
-            padding: 10px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9em;
-            border: 1px solid #1DB954;
-            width: 100%;
-            box-sizing: border-box;
-        }
+        /* WISHES & RSVP */
+        .wishes-section { max-width: 600px; margin: 0 auto; padding-top: 50px; padding-bottom: 50px; }
+        #disqus_thread { background-color: #181818; padding: 15px; border-radius: 8px; }
+        .rsvp-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
+        .rsvp-note { color: #a7a7a7; margin-bottom: 25px; }
+        .rsvp-button { display: block; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 700; font-size: 1.1em; margin-bottom: 15px; width: 100%; box-sizing: border-box; }
+        .share-button { display: block; text-decoration: none; padding: 10px; border: 1px solid #1DB954; border-radius: 50px; font-weight: 700; font-size: 0.9em; width: 100%; box-sizing: border-box; }
 
         @media (min-width: 600px) {
-            .poster-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-            .location-container {
-                flex-direction: row;
-                text-align: left;
-            }
-            .map-placeholder, .location-details {
-                flex: 1;
-            }
-        }
-        @media (max-width: 600px) {
-            .poster-grid {
-                grid-template-columns: repeat(2, 1fr); 
-            }
-        }
-        @media (max-width: 400px) {
-            .artist-photo {
-                width: 100px;
-                height: 100px;
-            }
+            .location-container { flex-direction: row; text-align: left; }
+            .map-placeholder, .location-details { flex: 1; }
         }
     </style>
 </head>
@@ -487,14 +154,12 @@
 
     <div id="video" class="section trailer-section">
         <div class="hero-image">
-            <img src="placeholder_prewed.jpg" alt="Sampul Album Cinta" class="trailer-image"> 
+            <img src="placeholder_hero.jpg" alt="Foto Utama Prewedding" class="trailer-image"> 
         </div>
 
         <div class="trailer-info">
             <p class="docu-tag">OUR LOVE ALBUM</p>
-            <h2 class="trailer-title">
-                JoJo & Gaby
-            </h2>
+            <h2 class="trailer-title">JoJo & Gaby</h2>
             <div class="metadata">
                 <span>ARTIST</span> 
                 <span class="tahun-tayang">2026</span> 
@@ -504,7 +169,10 @@
             
             <p class="coming-soon">▶️ Tanggal Rilis: 1 JUNI 2026</p>
             
-            <p class="deskripsi">Kami tunggu kedatangannya di hari bahagia kami ya! (Ini bisa diganti jadi kutipan Al-Quran atau lirik lagu)</p>
+            <p class="deskripsi">
+                Halo! Kami ingin informasikan bahwa kami akan segera menikah, dan kamu jadi 1 dari 200 orang yang kami undang untuk hadir di hari bahagia kami. Perlu diketahui, karena bersifat **Intimate Wedding** dan hanya mengundang orang terdekat, maka dari itu kami harapkan untuk tidak menyebarluaskan informasi detail terkait hari pernikahan kami (misal lokasi dan waktu acara). Kami tunggu kedatangannya di hari bahagia kami yaaa.
+                <br><br>Dengan penuh cinta, The Bride and the Groom
+            </p>
         </div>
     </div>
     
@@ -514,23 +182,41 @@
         <div class="poster-grid">
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_prewed.jpg" alt="Foto Galeri 1" class="trailer-image"> 
+                    <img src="placeholder_1.jpg" alt="Foto Galeri 1" class="trailer-image"> 
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_prewed.jpg" alt="Foto Galeri 2" class="trailer-image">
+                    <img src="placeholder_2.jpg" alt="Foto Galeri 2" class="trailer-image">
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_prewed.jpg" alt="Foto Galeri 3" class="trailer-image">
+                    <img src="placeholder_3.jpg" alt="Foto Galeri 3" class="trailer-image">
                 </div>
             </div>
             
+            <div class="poster-item">
+                <div class="image-placeholder">
+                    <img src="placeholder_4.jpg" alt="Foto Galeri 4" class="trailer-image"> 
+                </div>
             </div>
+
+            <div class="poster-item">
+                <div class="image-placeholder">
+                    <img src="placeholder_5.jpg" alt="Foto Galeri 5" class="trailer-image">
+                </div>
+            </div>
+
+            <div class="poster-item">
+                <div class="image-placeholder">
+                    <img src="placeholder_6.jpg" alt="Foto Galeri 6" class="trailer-image">
+                </div>
+            </div>
+            
+        </div>
     </div>
 
     <div id="location" class="section tracklist-section">
@@ -558,7 +244,7 @@
                 <div class="track-info">
                     <p class="track-name">Akad Nikah (The Vows)</p>
                     <span class="track-date">1 JUNI 2026</span>
-                    <span class="track-time">09:00 - 10:00 WIB</span>
+                    <span class="track-time">16:00 - 18:00 WITA</span>
                 </div>
                 <span class="track-status live">LIVE</span>
             </div>
@@ -568,7 +254,7 @@
                 <div class="track-info">
                     <p class="track-name">Resepsi (The Celebration)</p>
                     <span class="track-date">1 JUNI 2026</span>
-                    <span class="track-time">11:00 - 14:00 WIB</span>
+                    <span class="track-time">19:00 - 21:30 WITA</span>
                 </div>
                 <span class="track-status rem">REM</span>
             </div>
@@ -576,19 +262,19 @@
     </div>
 
     <div id="artists" class="section artists-section">
-        <h2 class="section-title">The Main Artists (Featured Duo)</h2>
+        <h2 class="section-title">The Main Artists</h2>
 
         <div class="artist-duo-grid">
             <div class="artist-card">
                 <div class="artist-photo male"></div>
                 <h3 class="artist-name">JoJo</h3>
-                <p class="artist-producer">Putra dari Bpk. Isaac dan Ibu Wiwi</p>
+                <p class="artist-producer">Putra kelima dari Bapak Isaac dan Ibu Wiwi</p>
             </div>
 
             <div class="artist-card">
                 <div class="artist-photo female"></div>
                 <h3 class="artist-name">Gaby</h3>
-                <p class="artist-producer">Putri dari Bpk. Daniel dan Ibu Indah</p>
+                <p class="artist-producer">Putri pertama dari Bapak Daniel dan Ibu Endah</p>
             </div>
         </div>
     </div>
@@ -663,7 +349,6 @@
         // --- WIDGET DISQUS (GUESTBOOK LIVE) ---
         var disqus_config = function () {
             this.page.identifier = 'JojoGabyWedding'; 
-            // PASTIKAN URL INI BENAR: https://precious-peony-8c43cb.netlify.app/
             this.page.url = 'https://precious-peony-8c43cb.netlify.app/'; 
             this.page.title = 'Wishes for Jojo & Gaby';
         };
