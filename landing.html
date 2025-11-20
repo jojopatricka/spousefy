@@ -1,111 +1,57 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Invitation - The Love Duet</title>
-    <style>
-        /* Gaya Khas SPOUSEFY */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #121212; /* Warna Hitam Gelap */
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-        }
-        #login-box {
-            background-color: #1a1a1a;
-            padding: 40px;
-            border-radius: 8px;
-            max-width: 350px;
-            width: 90%;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            color: #1DB954; /* Hijau Khas SPOUSEFY */
-            margin-bottom: 5px;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-        #guest-name-display {
-            font-size: 2.2em; /* Menonjolkan nama tamu */
-            font-weight: 800;
-            margin: 0 0 30px 0;
-            color: #fff;
-        }
-        p {
-            font-size: 0.9em;
-            color: #b3b3b3;
-            margin-bottom: 5px;
-        }
-        button {
-            background-color: #1DB954; /* Hijau SPOUSEFY */
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 500px; 
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s;
-            width: 100%;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #1ED760;
-        }
-        .small-text {
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #535353;
-        }
-    </style>
-</head>
-<body>
-
-    <div id="login-box">
-        <h1>Halo</h1>
-        
-        <h2 id="guest-name-display">Tamu Undangan</h2> 
-        
-        <p>Anda diundang untuk mendengarkan lagu hidup kami.</p>
-        
-        <button onclick="openInvitation()">PLAY OUR STORY</button>
-
-        <p class="small-text">SPOUSEFY Wedding Edition - Made with Love</p> 
-    </div>
-
     <script>
+        // --- FUNGSI NAMA TAMU & AUTOPLAY MUSIK ---
         document.addEventListener('DOMContentLoaded', function() {
-            const displayElement = document.getElementById('guest-name-display');
-            const urlParams = new URLSearchParams(window.location.search);
-            
-            // Ambil nama dari parameter 'to' di URL landing page
-            const guestName = urlParams.get('to');
-            let cleanName = 'Tamu Undangan'; // Default
-
-            if (guestName) {
-                // Decode nama tamu dan ganti placeholder
-                cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
-                displayElement.textContent = cleanName;
-            } else {
-                // Jika tidak ada nama di URL, tampilkan peringatan
-                displayElement.textContent = 'Nama Tidak Diketahui';
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
             }
 
-            // Fungsi yang dipanggil saat tombol diklik
-            window.openInvitation = function() {
-                // Teruskan nama tamu ke index.html
-                const encodedName = encodeURIComponent(cleanName.trim());
-                window.location.href = `index.html?to=${encodedName}`;
-            };
+            const guestName = getQueryParam('to');
+            const musicCommand = getQueryParam('play_music'); // Cek perintah dari Landing Page
+            const displayElement = document.getElementById('guestNameDisplay');
+            const music = document.getElementById('background-music');
+            
+            const defaultGreeting = 'WELCOME, KESAYANGAN';
+            
+            // 1. Memproses Nama Tamu
+            if (guestName && displayElement) {
+                const cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
+                displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
+            } else if (displayElement) {
+                displayElement.textContent = defaultGreeting;
+            }
+
+            // 2. Memproses Autoplay Musik JIKA ADA PERINTAH DARI LANDING PAGE
+            if (musicCommand === 'true') {
+                music.volume = 0.5;
+                music.play().catch(error => {
+                    console.error("Autoplay diblokir:", error);
+                });
+            } else {
+                // Jika tidak ada perintah, tetap berikan kesempatan memutar musik saat klik pertama di halaman ini
+                let hasPlayed = false;
+                document.addEventListener('click', function() {
+                    if (!hasPlayed) {
+                        music.volume = 0.5;
+                        music.play().catch(error => {});
+                        hasPlayed = true;
+                    }
+                }, { once: true });
+            }
         });
+
+        // --- WIDGET DISQUS (GUESTBOOK LIVE) ---
+        var disqus_config = function () {
+            this.page.identifier = 'JojoGabyWedding'; 
+            this.page.url = 'https://precious-peony-8c43cb.netlify.app/'; 
+            this.page.title = 'Wishes for Jojo & Gaby';
+        };
+
+        (function() { 
+            var d = document, s = d.createElement('script');
+            // SHORTNAME DISQUS ANDA SUDAH DIPASANG DI SINI
+            s.src = 'https://jongski.disqus.com/embed.js'; 
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
     </script>
-</body>
-</html>
