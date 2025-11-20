@@ -40,7 +40,7 @@
         .nav-tab { color: #a7a7a7; text-decoration: none; padding: 8px 15px; margin-right: 8px; border-radius: 50px; font-size: 0.9em; font-weight: 600; flex-shrink: 0; }
         .nav-tab.active, .nav-tab:hover { background-color: #282828; color: #fff; }
 
-        /* VIDEO SECTION */
+        /* HOME SECTION (PREVIOUSLY VIDEO) */
         .trailer-section { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .hero-image { width: 250px; height: 250px; overflow: hidden; border-radius: 5px; box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5); }
         .trailer-image { width: 100%; height: 100%; object-fit: cover; }
@@ -122,18 +122,43 @@
             margin-bottom: 20px;
         }
         
-        /* Menghilangkan Reaction Bar Disqus jika memungkinkan (CSS eksternal) */
-        /* Catatan: Ini mungkin tidak berfungsi pada semua browser/setup Disqus */
-        #disqus_thread #disqus_comment_iframe .post-actions .reactions {
-            display: none !important;
-        }
-        
-        #disqus_thread { background-color: #181818; padding: 15px; border-radius: 8px; }
+        /* CSS Tambahan */
         .rsvp-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
         .rsvp-note { color: #a7a7a7; margin-bottom: 25px; }
         .rsvp-button { display: block; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 700; font-size: 1.1em; margin-bottom: 15px; width: 100%; box-sizing: border-box; }
         .share-button { display: block; text-decoration: none; padding: 10px; border: 1px solid #1DB954; border-radius: 50px; font-weight: 700; font-size: 0.9em; width: 100%; box-sizing: border-box; }
 
+        /* KODE GIFT SECTION */
+        .gift-section { 
+            max-width: 600px; 
+            margin: 0 auto; 
+            padding-top: 50px; 
+            padding-bottom: 50px; 
+            text-align: center;
+            border-top: 1px solid #282828; 
+        }
+        .gift-note, .gift-note-bottom {
+            color: #a7a7a7;
+            margin-bottom: 25px;
+            font-size: 0.9em;
+        }
+        .bank-details-container {
+            background-color: #181818;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .bank-name {
+            font-size: 1.2em;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+        .account-number, .account-holder {
+            margin: 5px 0;
+            color: #ccc;
+        }
+        
         @media (min-width: 600px) {
             .location-container { flex-direction: row; text-align: left; }
             .map-placeholder, .location-details { flex: 1; }
@@ -158,16 +183,17 @@
         </div>
         
         <nav class="spotify-nav-tabs">
-            <a href="#video" class="nav-tab active">Video</a>
+            <a href="#home" class="nav-tab active">Home</a> 
             <a href="#photo" class="nav-tab">Photo</a>
             <a href="#location" class="nav-tab">Location</a>
             <a href="#artists" class="nav-tab">Artists</a>
             <a href="#wishes" class="nav-tab">Wishes</a>
+            <a href="#gift" class="nav-tab">Gift</a>
             <a href="#rsvp" class="nav-tab">RSVP</a>
         </nav>
     </header>
 
-    <div id="video" class="section trailer-section">
+    <div id="home" class="section trailer-section"> 
         <div class="hero-image">
             <img src="placeholder_hero.jpg" alt="Foto Utama Prewedding" class="trailer-image"> 
         </div>
@@ -303,11 +329,29 @@
             <br>Lanjutkan pesan dengan ucapan/doa terbaik Anda.
         </p>
         
-        <div id="disqus_thread"></div>
-        
+        <div id="hyvor-talk-view"></div>
         <p class="wish-note" style="text-align: center; color: #a7a7a7; font-size: 0.8em; padding-top: 10px;">
             Konfirmasi dan Ucapan dari semua tamu akan muncul secara *live*.
         </p>
+    </div>
+
+    <div id="gift" class="section gift-section">
+        <h2 class="section-title">Wedding Gift (Kado Pernikahan)</h2>
+        <p class="gift-note">
+            Kehadiran dan doa restu Anda adalah kado terindah bagi kami. Namun, jika Anda ingin memberikan hadiah, kami dengan senang hati menerimanya dalam bentuk digital.
+        </p>
+
+        <div class="bank-details-container">
+            <h3 class="bank-name green-neon">Bank BCA</h3>
+            <p class="account-number">No. Rekening: 1234567890</p>
+            <p class="account-holder">Atas Nama: Jojo Patricka</p>
+
+            <h3 class="bank-name green-neon">Bank Mandiri</h3>
+            <p class="account-number">No. Rekening: 0987654321</p>
+            <p class="account-holder">Atas Nama: Gaby Wimala</p>
+        </div>
+        
+        <p class="gift-note-bottom">Terima kasih atas kebaikan Anda.</p>
     </div>
 
     <div id="rsvp" class="section rsvp-section">
@@ -366,20 +410,19 @@
                 }, { once: true });
             }
         });
-
-        // --- WIDGET DISQUS (GUESTBOOK LIVE) ---
-        var disqus_config = function () {
-            this.page.identifier = 'JojoGabyWedding'; 
-            this.page.url = 'https://precious-peony-8c43cb.netlify.app/'; 
-            this.page.title = 'Wishes for Jojo & Gaby';
-        };
-
-        (function() { 
-            var d = document, s = d.createElement('script');
-            s.src = 'https://jongski.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+        
+        // ==============================================
+        // MULAI KODE KONFIGURASI HYVOR TALK
+        // ==============================================
+        <script type="text/javascript">
+            // GANTI ID INI DENGAN ID HYVOR TALK ANDA: 14543
+            var HYVOR_TALK_WEBSITE = 14543; 
+            var HYVOR_TALK_LANGUAGE = 'id'; // Opsional: Atur bahasa ke Indonesia
+        </script>
+        <script async src="https://talk.hyvor.com/web-api/embed"></script>
+        // ==============================================
+        // AKHIR KODE KONFIGURASI HYVOR TALK
+        // ==============================================
     </script>
 </body>
 </html>
