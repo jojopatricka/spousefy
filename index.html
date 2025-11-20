@@ -521,6 +521,26 @@
     </style>
 </head>
 <body>
+<audio id="background-music" loop>
+    <source src="https://cdntr4.onlinedown.us/230128/Boyz_II_Men_On_Bended_Knee_CeeNaija.Com_.mp3" type="audio/mp3">
+    Browser Anda tidak mendukung elemen audio.
+</audio>
+
+<script>
+    // FUNGSI UNTUK MEMUTAR MUSIK
+    const music = document.getElementById('background-music');
+    let hasPlayed = false;
+
+    document.addEventListener('click', function() {
+        if (!hasPlayed) {
+            music.volume = 0.5; // Atur volume
+            music.play().catch(error => {
+                console.log("Autoplay diblokir, menunggu interaksi user.");
+            });
+            hasPlayed = true;
+        }
+    }, { once: true }); 
+</script>
 
     <header class="spotify-header">
         <div class="header-top-row">
@@ -604,7 +624,7 @@
             <div class="location-details">
                 <h3 class="green-neon">Geo Space</h3>
                 <p class="address">Jl. Raya Kedampang, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361</p>
-                <a href="https://maps.app.goo.gl/Dhpv3Ntz7JDoAkBQ8"target="_blank" class="map-button">
+                <a href="https://maps.app.goo.gl/p9L5KiZKd3WxtQHh6"target="_blank" class="map-button">
                     Show Location on Maps
                 </a>
             </div>
