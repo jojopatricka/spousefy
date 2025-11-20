@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPOUSETIFY | JoJo & Gaby</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght400;600;700;800&display=swap" rel="stylesheet">
     <style>
         /* --- KODE CSS SPUSETIFY V3 --- */
         body {
@@ -164,7 +164,9 @@
             .map-placeholder, .location-details { flex: 1; }
         }
     </style>
-</head>
+    
+    <script async src="https://talk.hyvor.com/embed/embed.js" type="module"></script> 
+    </head>
 <body>
     
     <audio id="background-music" loop>
@@ -329,7 +331,10 @@
             <br>Lanjutkan pesan dengan ucapan/doa terbaik Anda.
         </p>
         
-        <div id="hyvor-talk-view"></div>
+        <hyvor-talk-comments 
+            website-id="14543" 
+            page-id="" 
+        ></hyvor-talk-comments>
         <p class="wish-note" style="text-align: center; color: #a7a7a7; font-size: 0.8em; padding-top: 10px;">
             Konfirmasi dan Ucapan dari semua tamu akan muncul secara *live*.
         </p>
@@ -344,11 +349,7 @@
         <div class="bank-details-container">
             <h3 class="bank-name green-neon">Bank BCA</h3>
             <p class="account-number">No. Rekening: 1234567890</p>
-            <p class="account-holder">Atas Nama: Jojo Patricka</p>
-
-            <h3 class="bank-name green-neon">Bank Mandiri</h3>
-            <p class="account-number">No. Rekening: 0987654321</p>
-            <p class="account-holder">Atas Nama: Gaby Wimala</p>
+            <p class="account-holder">Atas Nama: Gabrielle</p>
         </div>
         
         <p class="gift-note-bottom">Terima kasih atas kebaikan Anda.</p>
@@ -410,19 +411,6 @@
                 }, { once: true });
             }
         });
-        
-        // ==============================================
-        // MULAI KODE KONFIGURASI HYVOR TALK
-        // ==============================================
-        <script type="text/javascript">
-            // GANTI ID INI DENGAN ID HYVOR TALK ANDA: 14543
-            var HYVOR_TALK_WEBSITE = 14543; 
-            var HYVOR_TALK_LANGUAGE = 'id'; // Opsional: Atur bahasa ke Indonesia
-        </script>
-        <script async src="https://talk.hyvor.com/web-api/embed"></script>
-        // ==============================================
-        // AKHIR KODE KONFIGURASI HYVOR TALK
-        // ==============================================
     </script>
 </body>
 </html>
