@@ -7,9 +7,8 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* --- KODE CSS LENGKAP SPUSETIFY V3 (Desain Cantik) --- */
+        /* --- KODE CSS SPUSETIFY V3 --- */
         body {
-            /* Font diubah ke Poppins sebagai pengganti Circular Std yang berbayar, ini sangat mendekati. */
             font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
             background-color: #121212; 
             color: #fff; 
@@ -32,9 +31,7 @@
             z-index: 1000; 
             border-bottom: 1px solid #282828;
         }
-        .header-top-row {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; 
-        }
+        .header-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
         .brand-logo { display: flex; align-items: center; font-weight: 800; }
         .logo-icon { font-size: 1.5em; margin-right: 5px; }
         .logo-text { font-size: 1.1em; color: #fff; }
@@ -58,14 +55,14 @@
         .gallery-section { padding-top: 50px; }
         .poster-grid { 
             display: grid;
-            grid-template-columns: repeat(3, 1fr); /* 3 kolom */
+            grid-template-columns: repeat(3, 1fr); 
             gap: 15px;
             max-width: 600px;
             margin: 0 auto;
         }
         @media (max-width: 600px) {
             .poster-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+                grid-template-columns: repeat(2, 1fr); 
             }
         }
         .poster-item { position: relative; overflow: hidden; cursor: pointer; border-radius: 4px; }
@@ -113,6 +110,24 @@
 
         /* WISHES & RSVP */
         .wishes-section { max-width: 600px; margin: 0 auto; padding-top: 50px; padding-bottom: 50px; }
+        
+        /* Instruksi RSVP di Wishes */
+        .wish-instruction {
+            text-align: center; 
+            color: #fff; 
+            font-size: 1em; 
+            font-weight: 600; 
+            padding-bottom: 10px; 
+            border-bottom: 1px solid #282828; 
+            margin-bottom: 20px;
+        }
+        
+        /* Menghilangkan Reaction Bar Disqus jika memungkinkan (CSS eksternal) */
+        /* Catatan: Ini mungkin tidak berfungsi pada semua browser/setup Disqus */
+        #disqus_thread #disqus_comment_iframe .post-actions .reactions {
+            display: none !important;
+        }
+        
         #disqus_thread { background-color: #181818; padding: 15px; border-radius: 8px; }
         .rsvp-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
         .rsvp-note { color: #a7a7a7; margin-bottom: 25px; }
@@ -280,22 +295,28 @@
     </div>
     
     <div id="wishes" class="section wishes-section">
-        <h2 class="section-title">Wishes & Guestbook (Live)</h2>
+        <h2 class="section-title">Konfirmasi Kehadiran & Wishes</h2>
+        
+        <p class="wish-instruction">
+            Mohon konfirmasi kehadiran Anda di awal pesan dengan format:<br>
+            <span class="green-neon" style="font-weight: 400;">[Nama Anda] - [HADIR / TIDAK HADIR]</span>
+            <br>Lanjutkan pesan dengan ucapan/doa terbaik Anda.
+        </p>
         
         <div id="disqus_thread"></div>
         
         <p class="wish-note" style="text-align: center; color: #a7a7a7; font-size: 0.8em; padding-top: 10px;">
-            Ucapan dari semua tamu akan muncul secara *live* dan dapat dilihat semua orang.
+            Konfirmasi dan Ucapan dari semua tamu akan muncul secara *live*.
         </p>
     </div>
 
     <div id="rsvp" class="section rsvp-section">
         <h2 class="section-title">RSVP & Share</h2>
-        <p class="rsvp-note">Konfirmasi kehadiran Anda sangat berarti bagi kami.</p>
+        <p class="rsvp-note">Jika Anda memilih konfirmasi pribadi, atau ada pertanyaan, silakan hubungi kami via WhatsApp.</p>
 
-        <a href="https://wa.me/6281234567890?text=Hello%20JoJo%20%26%20Gaby%2C%20saya%20[Nama%20Tamu]%20konfirmasi%20Hadir%20di%20resepsi%20kalian!" 
+        <a href="https://wa.me/6281234567890?text=Hello%20JoJo%20%26%20Gaby%2C%20saya%20[Nama%20Tamu]%20ingin%20konfirmasi%20kehadiran%20atau%20bertanya." 
            target="_blank" class="rsvp-button spotify-background">
-            KONFIRMASI KEHADIRAN (RSVP)
+            KONTAK KAMI VIA WHATSAPP
         </a>
         
         <a href="whatsapp://send?text=Yuk%20cek%20undangan%20pernikahan%20ala%20Spotify%20JoJo%20%26%20Gaby%20di%20[LINK%20WEBSITE%20LO]" 
