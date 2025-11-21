@@ -125,9 +125,21 @@
         /* CSS Tambahan */
         .rsvp-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
         .rsvp-note { color: #a7a7a7; margin-bottom: 25px; }
-        .rsvp-button { display: block; text-decoration: none; padding: 15px; border-radius: 50px; font-weight: 700; font-size: 1.1em; margin-bottom: 15px; width: 100%; box-sizing: border-box; }
-        .share-button { display: block; text-decoration: none; padding: 10px; border: 1px solid #1DB954; border-radius: 50px; font-weight: 700; font-size: 0.9em; width: 100%; box-sizing: border-box; }
-
+        /* Style untuk tombol Hadir/Tidak Hadir */
+        .rsvp-button { 
+            display: block; 
+            text-decoration: none; 
+            padding: 15px; 
+            border-radius: 50px; 
+            font-weight: 700; 
+            font-size: 1.1em; 
+            margin-bottom: 15px; 
+            width: 100%; 
+            box-sizing: border-box; 
+            border: none; /* Penting untuk <button> */
+            cursor: pointer;
+        }
+        
         /* KODE GIFT SECTION */
         .gift-section { 
             max-width: 600px; 
@@ -189,9 +201,9 @@
             <a href="#photo" class="nav-tab">Photo</a>
             <a href="#location" class="nav-tab">Location</a>
             <a href="#artists" class="nav-tab">Artists</a>
+            <a href="#rsvp" class="nav-tab">RSVP</a>
             <a href="#wishes" class="nav-tab">Wishes</a>
             <a href="#gift" class="nav-tab">Gift</a>
-            <a href="#rsvp" class="nav-tab">RSVP</a>
         </nav>
     </header>
 
@@ -322,13 +334,40 @@
         </div>
     </div>
     
+    <div id="rsvp" class="section rsvp-section">
+        <h2 class="section-title">Konfirmasi Kehadiran (1-Klik)</h2>
+        <p class="rsvp-note">Pilih status kehadiran Anda untuk acara resepsi kami. Data ini akan otomatis tercatat.</p>
+
+        <form name="attendance" method="POST" data-netlify="true" action="/success-rsvp.html">
+            
+            <input type="hidden" name="form-name" value="attendance" />
+            <input type="hidden" name="guest_name" id="hiddenGuestName" value="Guest" />
+            
+            <button type="submit" name="status" value="Hadir" 
+                class="rsvp-button spotify-background" style="margin-bottom: 20px;">
+                Saya Hadir
+            </button>
+            
+            <button type="submit" name="status" value="Tidak Hadir" 
+                class="rsvp-button" style="background-color: #535353; color: #fff;">
+                Saya Tidak Bisa Hadir
+            </button>
+        </form>
+        
+        <h2 class="section-title" style="margin-top: 50px;">Ada Pertanyaan?</h2>
+        <p class="rsvp-note">Jika ada pertanyaan atau ingin menyampaikan pesan pribadi.</p>
+        <a href="https://wa.me/6282111818344?text=Hello%20JoJo%20%26%20Gaby%2C%20saya%20[Nama%20Tamu]%20ingin%20bertanya%20mengenai%20undangan." 
+           target="_blank" class="rsvp-button spotify-background">
+            KONTAK KAMI VIA WHATSAPP
+        </a>
+
+    </div>
+
     <div id="wishes" class="section wishes-section">
-        <h2 class="section-title">Konfirmasi Kehadiran & Wishes</h2>
+        <h2 class="section-title">Kirim Ucapan / Doa Terbaik</h2>
         
         <p class="wish-instruction">
-            Mohon konfirmasi kehadiran Anda di awal pesan dengan format:<br>
-            <span class="green-neon" style="font-weight: 400;">[Nama Anda] - [HADIR / TIDAK HADIR]</span>
-            <br>Lanjutkan pesan dengan ucapan/doa terbaik Anda.
+            Anda dapat mengirimkan ucapan atau doa terbaik Anda melalui kolom komentar di bawah ini.
         </p>
         
         <hyvor-talk-comments 
@@ -336,7 +375,7 @@
             page-id="" 
         ></hyvor-talk-comments>
         <p class="wish-note" style="text-align: center; color: #a7a7a7; font-size: 0.8em; padding-top: 10px;">
-            Konfirmasi dan Ucapan dari semua tamu akan muncul secara *live*.
+            Ucapan dari semua tamu akan muncul secara *live*.
         </p>
     </div>
 
@@ -355,17 +394,6 @@
         <p class="gift-note-bottom">Terima kasih atas kebaikan Anda.</p>
     </div>
 
-    <div id="rsvp" class="section rsvp-section">
-        <h2 class="section-title">RSVP</h2>
-        <p class="rsvp-note">Jika Anda memilih konfirmasi pribadi, atau ada pertanyaan, silakan hubungi kami via WhatsApp.</p>
-
-        <a href="https://wa.me/6282111818344?text=Hello%20JoJo%20%26%20Gaby%2C%20saya%20[Nama%20Tamu]%20ingin%20konfirmasi%20kehadiran%20atau%20bertanya." 
-           target="_blank" class="rsvp-button spotify-background">
-            KONTAK KAMI VIA WHATSAPP
-        </a>
-        
-        </div>
-
     <script>
         // --- FUNGSI NAMA TAMU & AUTOPLAY MUSIK ---
         document.addEventListener('DOMContentLoaded', function() {
@@ -381,7 +409,7 @@
             
             const defaultGreeting = 'WELCOME, KESAYANGAN';
             
-            // 1. Memproses Nama Tamu
+            // 1. Memproses Nama Tamu di Header
             if (guestName && displayElement) {
                 const cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
                 displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
@@ -389,7 +417,19 @@
                 displayElement.textContent = defaultGreeting;
             }
 
-            // 2. Memproses Autoplay Musik
+            // 2. Memasukkan Nama Tamu ke Hidden Input Form (Untuk Netlify RSVP)
+            const hiddenGuestInput = document.getElementById('hiddenGuestName');
+            if (hiddenGuestInput) {
+                if (guestName) {
+                    // Bersihkan nama yang akan dimasukkan ke database
+                    const cleanNameForDB = decodeURIComponent(guestName.replace(/\+/g, ' '));
+                    hiddenGuestInput.value = cleanNameForDB;
+                } else {
+                    hiddenGuestInput.value = 'Unknown Guest'; 
+                }
+            }
+
+            // 3. Memproses Autoplay Musik
             if (musicCommand === 'true') {
                 music.volume = 0.5;
                 music.play().catch(error => {
