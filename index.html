@@ -48,14 +48,14 @@
         /* CSS Rasio 9:16 untuk video Portrait */
         .hero-image { 
             width: 100%; 
-            max-width: 300px; /* Diperkecil agar video portrait tidak terlalu lebar */
-            aspect-ratio: 9 / 16; /* Rasio 9:16 untuk video Portrait */
+            max-width: 300px; 
+            aspect-ratio: 9 / 16; 
             overflow: hidden; 
             border-radius: 5px; 
             box-shadow: 0 4px 60px rgba(0, 0, 0, 0.5); 
             position: relative; 
         }
-        .trailer-video { /* KODE BARU: untuk iframe */
+        .trailer-video { 
             width: 100%; 
             height: 100%; 
             position: absolute; 
@@ -124,7 +124,17 @@
         .artists-section { max-width: 600px; margin: 0 auto; padding-top: 50px; text-align: center; }
         .artist-duo-grid { display: flex; justify-content: space-around; gap: 20px; margin-top: 20px; }
         .artist-card { flex: 1; text-align: center; }
-        .artist-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 10px auto; background-color: #282828; border: 3px solid #1DB954; overflow: hidden; }
+        /* Style agar foto Artist bisa dimasukkan via img tag */
+        .artist-photo { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 10px auto; background-color: #282828; border: 3px solid #1DB954; overflow: hidden; position: relative; }
+        .artist-photo img {
+             width: 100%;
+             height: 100%;
+             object-fit: cover;
+             position: absolute;
+             top: 0;
+             left: 0;
+        }
+
         .artist-name { margin: 5px 0 0 0; font-size: 1.2em; font-weight: 700; }
         .artist-producer { margin: 0; font-size: 0.8em; color: #a7a7a7; }
 
@@ -265,37 +275,37 @@
         <div class="poster-grid">
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_1.jpg" alt="Foto Galeri 1" class="trailer-image"> 
+                    <img src="photo_meeting.jpg" alt="Foto Galeri 1: Pertemuan" class="trailer-image"> 
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_2.jpg" alt="Foto Galeri 2" class="trailer-image">
+                    <img src="photo_engagement.jpg" alt="Foto Galeri 2: Tunangan" class="trailer-image">
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_3.jpg" alt="Foto Galeri 3" class="trailer-image">
+                    <img src="photo_liburan_bali.jpg" alt="Foto Galeri 3: Liburan" class="trailer-image">
                 </div>
             </div>
             
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_4.jpg" alt="Foto Galeri 4" class="trailer-image"> 
+                    <img src="photo_family.jpg" alt="Foto Galeri 4: Keluarga" class="trailer-image"> 
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_5.jpg" alt="Foto Galeri 5" class="trailer-image">
+                    <img src="photo_bestman_maid.jpg" alt="Foto Galeri 5: Sahabat" class="trailer-image">
                 </div>
             </div>
 
             <div class="poster-item">
                 <div class="image-placeholder">
-                    <img src="placeholder_6.jpg" alt="Foto Galeri 6" class="trailer-image">
+                    <img src="photo_prewed_candid.jpg" alt="Foto Galeri 6: Prewed Candid" class="trailer-image">
                 </div>
             </div>
             
@@ -349,13 +359,17 @@
 
         <div class="artist-duo-grid">
             <div class="artist-card">
-                <div class="artist-photo male"></div>
+                <div class="artist-photo male">
+                    <img src="artist_jojo.jpg" alt="Foto JoJo (Groom)">
+                </div>
                 <h3 class="artist-name">JoJo</h3>
                 <p class="artist-producer">Putra kelima dari Bapak Isaac dan Ibu Wiwi</p>
             </div>
 
             <div class="artist-card">
-                <div class="artist-photo female"></div>
+                <div class="artist-photo female">
+                    <img src="artist_gaby.jpg" alt="Foto Gaby (Bride)">
+                </div>
                 <h3 class="artist-name">Gaby</h3>
                 <p class="artist-producer">Putri pertama dari Bapak Daniel dan Ibu Endah</p>
             </div>
@@ -366,9 +380,13 @@
         <h2 class="section-title">Konfirmasi Kehadiran (1-Klik)</h2>
         <p class="rsvp-note">Pilih status kehadiran Anda untuk acara resepsi kami. Data ini akan otomatis tercatat.</p>
 
-        <form name="attendance" method="POST" data-netlify="true" action="/success-rsvp.html">
+        <form 
+            action="https://formspree.io/f/mpwnqbva" 
+            method="POST" 
+            target="_blank" 
+            class="rsvp-form-new">
             
-            <input type="hidden" name="form-name" value="attendance" />
+            <input type="hidden" name="_subject" value="RSVP JoJo & Gaby: Konfirmasi Kehadiran!" />
             <input type="hidden" name="guest_name" id="hiddenGuestName" value="Guest" />
             
             <button type="submit" name="status" value="Hadir" 
@@ -423,7 +441,7 @@
     </div>
 
     <script>
-        // --- FUNGSI BARU UNTUK MENGONTROL MUSIK BERDASARKAN STATUS VIDEO YOUTUBE ---
+        // --- FUNGSI KONTROL MUSIK OTOMATIS OLEH YOUTUBE API ---
         let player; 
         const backgroundMusic = document.getElementById('background-music');
 
@@ -448,7 +466,6 @@
             // YT.PlayerState.ENDED (0) atau YT.PlayerState.PAUSED (2) = Video selesai/dihentikan
             else if (event.data === YT.PlayerState.ENDED || event.data === YT.PlayerState.PAUSED) {
                 // Lanjutkan musik latar jika video dihentikan atau selesai
-                // Pastikan musik hanya di-play jika sebelumnya sudah pernah diputar
                 if (window.hasPlayed) { 
                     backgroundMusic.play().catch(error => {
                         console.error("Autoplay diblokir:", error);
@@ -481,11 +498,10 @@
                 displayElement.textContent = defaultGreeting;
             }
 
-            // 2. Memasukkan Nama Tamu ke Hidden Input Form (Untuk Netlify RSVP)
+            // 2. Memasukkan Nama Tamu ke Hidden Input Form
             const hiddenGuestInput = document.getElementById('hiddenGuestName');
             if (hiddenGuestInput) {
                 if (guestName) {
-                    // Bersihkan nama yang akan dimasukkan ke database
                     const cleanNameForDB = decodeURIComponent(guestName.replace(/\+/g, ' '));
                     hiddenGuestInput.value = cleanNameForDB;
                 } else {
@@ -493,16 +509,16 @@
                 }
             }
 
-            // 3. Memproses Autoplay Musik
+            // 3. Memproses Autoplay Musik (Dipanggil saat link menggunakan parameter ?play_music=true)
             if (musicCommand === 'true') {
                 backgroundMusic.volume = 0.5;
                 backgroundMusic.play().then(() => {
-                    window.hasPlayed = true; // Set flag jika berhasil autoplay
+                    window.hasPlayed = true; 
                 }).catch(error => {
                     console.error("Autoplay diblokir:", error);
                 });
             } else {
-                // FALLBACK: Memutar musik saat klik pertama
+                // FALLBACK: Memutar musik saat klik pertama (untuk mengatasi blokir autoplay browser)
                 document.addEventListener('click', function() {
                     if (!window.hasPlayed) {
                         backgroundMusic.volume = 0.5;
