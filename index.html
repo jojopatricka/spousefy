@@ -331,20 +331,20 @@
 
         <div class="location-container">
             <div class="map-container">
-                <iframe
-                    src="Https://maps.app.goo.gl/9VJgSbr2r6J2ddsbA"
+                <iframe 
+                    src="https://maps.app.goo.gl/q3mYNhVoZqDBzs7FA" 
                     width="100%" 
                     height="450" 
                     style="border:0;" 
                     allowfullscreen="" 
-                    loading="lazy"
+                    loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
             <div class="location-details">
                 <h3 class="green-neon">Geo Space</h3>
                 <p class="address">Jl. Raya Kedampang, Kerobokan Kelod, Kec. Kuta Utara, Kabupaten Badung, Bali 80361</p>
-                <a href="https://maps.google.com/?q=Geo%20Space,%20Jl.%20Raya%20Kedampang,%20Kerobokan%20Kelod,%20Kec.%20Kuta%20Utara,%20Kabupaten%20Badung,%20Bali" target="_blank" class="map-button">
+                <a href="https://maps.app.goo.gl/gQ7q3Yq9P2gJdY6k7" target="_blank" class="map-button">
                     Show Location on Maps
                 </a>
             </div>
@@ -514,7 +514,7 @@
             // 1. Memproses Nama Tamu di Header
             if (guestName && displayElement) {
                 const cleanName = decodeURIComponent(guestName.replace(/\+/g, ' '));
-                displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
+                    displayElement.textContent = `WELCOME, ${cleanName.toUpperCase()}`;
             } else if (displayElement) {
                 displayElement.textContent = defaultGreeting;
             }
